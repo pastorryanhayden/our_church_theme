@@ -5,29 +5,29 @@
     <div class="row">
       <div class="col-sm-6 col-md-3">
         <h5>ABOUT THE CHURCH</h5>
-        <p>For the word of God is living and active. Sharper than any double-edged sword, it penetrates even to dividing soul and spirit, joints and marrow; it judges the thoughts and attitudes.</p>
+        {{site.data.home[0].Intro_Text | markdownify }}
       </div>
       <div class="col-sm-6 col-md-3">
         <h5>QUICK LINKS</h5>
         <ul class="footer-links">
-          <li><a href="#">Upcoming events</a></li>
-          <li><a href="#">Ministries</a></li>
-          <li><a href="#">Recent Sermons</a></li>
-          <li><a href="#">Contact us</a></li>
+          <li><a href="{{site.url}}calendar-list.html">Upcoming events</a></li>
+          <li><a href="{{site.url}}the-gospel.html">The Gospel</a></li>
+          <li><a href="{{site.url}}sermons.html">Recent Sermons</a></li>
+          <li><a href="{{site.url}}contact.html">Contact us</a></li>
         </ul>
       </div>
       <div class="col-sm-6 col-md-3">
         <h5>OUR ADDRESS</h5>
-        <p> Catholic Church<br>
-          121 King Street, Melbourne <br>
-          Victoria 3000 Australia<br>
+        <p> {{site.data.info[0].Church_Name}}<br>
+          {{site.data.location[0].Street_Address}} <br>
+          {{site.data.location[0].City}}, {{site.data.location[0].State}} {{site.data.location[0].Zip}}<br>
           <br>
-          Phone: +61 3 8376 6284<br>
-          Email: <a href="#">mail@catholicwebsite.com</a></p>
+          Phone: {{site.data.contact[0].Phone}}<br>
+          Email: <a href="mailto:{{site.data.contact[0].Church_email}}">{{site.data.contact[0].Church_email}}</a></p>
       </div>
       <div class="col-sm-6 col-md-3">
         <h5>CONNECT</h5>
-        <div class="social-icons"><a href="#"><img src="images/fb-icon.png" alt="social"></a> <a href="#"><img src="images/tw-icon.png" alt="social"></a> <a href="#"><img src="images/in-icon.png" alt="social"></a></div>
+        <div class="social-icons"><a href="#"><img src="http://sitesforchurch.s3.amazonaws.com/fb-icon.png" alt="social"></a> <a href="#"><img src="http://sitesforchurch.s3.amazonaws.com/tw-icon.png" alt="social"></a> <a href="#"><img src="http://sitesforchurch.s3.amazonaws.com/in-icon.png" alt="social"></a></div>
       </div>
     </div>
   </div>
