@@ -1,0 +1,36 @@
+---
+layout: default
+---
+  <!-- Start Page Header -->
+    <div class="page-header parallax clearfix">
+        <div class="title-subtitle-holder">
+        	<div class="title-subtitle-holder-inner">
+    			<h2>{{page.title}}</h2>
+        	</div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <!-- Breadcrumbs -->
+    <div class="lgray-bg breadcrumb-cont">
+    	<div class="container">
+          	<ol class="breadcrumb">
+            	<li><a href="{{site.url}}index.html">Home</a></li>
+              <li><a href="#">About Us</a></li>
+            	<li class="active">{{page.title}}</li>
+          	</ol>
+        </div>
+    </div>
+    <!-- Start Body Content -->
+  	<div class="main" role="main">
+    	<div id="content" class="content full">
+    		<div class="container">
+               <div class="row">
+                <div class="col-md-12">
+                  {% if page.body_content %}
+                  {{page.body_content | markdownify }}
+                   {% endif %}
+                </div><!--/col-md-12-->
+               </div><!--/row-->
+        </div><!--/container-->
+   	</div><!--#content-->
+    <!-- End Body Content -->

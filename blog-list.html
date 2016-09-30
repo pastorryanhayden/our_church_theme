@@ -1,0 +1,61 @@
+---
+layout: default
+---
+ <!-- Start Page Header -->
+    <div class="page-header parallax clearfix">
+    	<div class="page-header-overlay" style="background-image:url('http://sitesforchurch.s3.amazonaws.com/blog-title.png');"></div>
+        <div class="title-subtitle-holder">
+        	<div class="title-subtitle-holder-inner">
+    			<h2>Blog <br> Articles and News from Our Church</h2>
+        	</div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <!-- Breadcrumbs -->
+    <div class="lgray-bg breadcrumb-cont">
+    	<div class="container">
+          	<ol class="breadcrumb">
+            	<li><a href="{{site.url}}index.html">Home</a></li>
+              <li><a href="#">Media</a></li>
+            	<li class="active">Blog</li>
+          	</ol>
+        </div>
+    </div>
+    <!-- Start Body Content -->
+  	<div class="main" role="main">
+    	<div id="content" class="content full">
+        	<div class="container">
+                <div class="row">
+                    <ul class="isotope-grid">
+                    {% for post in site.data.blog %}
+                    
+                        <li class="col-md-4 col-sm-6 blog-item grid-item format-standard">
+                            <div class="grid-item-inner">
+                            	<div class="post-media">
+                               		<a href="{{ post.title | datapage_url: 'blog-posts'| prepend: site.url }}" class="media-box">
+                                   {% if  post.featured_image %}
+                                   <img src="{{post.featured_image[0].url}}" alt="" class="post-thumb">
+                                   {% else %}
+                                   <img src="http://sitesforchurch.s3.amazonaws.com/blog-title.png" alt="" class="post-thumb">
+                                   {% endif %}
+                                   </a>
+                                </div>
+                                <div class="grid-content">
+                                	<h3 class="post-title"><a href="blog-post.html">{{post.title}}</a></h3>
+                              		{{post.body_content | markdownify | truncatewords: 20 }}
+                                  <br>
+                               		<span class="meta-data"><i class="fa fa-calendar"></i> {{post.date_added | date: "%b %d, %Y"}} by <a href="#">{{post.author_name}}</a></span>
+                                </div>
+                                <div class="grid-footer clearfix">
+                                
+                            		<a href="{{ post.title | datapage_url: 'blog-posts'| prepend: site.url }}" class="btn btn-primary btn-sm">Read post</a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul><!--/isotope-grid-->
+                </div><!--/row-->
+         	</div><!--/container-->
+        </div><!--/content-->
+   	</div><!--/main-->
+    <!-- End Body Content -->

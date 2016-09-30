@@ -1,0 +1,233 @@
+---
+layout: default
+---
+  <!-- Start Hero Slider -->
+    <div class="hero-slider heroflex flexslider clearfix" data-autoplay="yes" data-pagination="no" data-arrows="yes" data-style="fade" data-speed="7000" data-pause="yes">
+      	<ul class="slides">
+        	{% for slider in site.data.slider %}
+      <li class=" parallax" style="background-image:url({{slider.image[0].url}}); background-repeat: no-repeat; background-size: cover; background-position: center center;">{% if  slider.url %}
+        <a href="{{slider.url}}"></a>{% endif %}</li>
+      {% endfor %}
+      	</ul>
+        {% comment %}<canvas id="canvas-animation"></canvas>{% endcomment %}
+    </div>
+    <!-- End Hero Slider -->
+    <!-- Lead Content -->
+    <div class="lead-content clearfix">
+    	<div class="lead-content-wrapper">
+    		<div class="container">
+            	<div class="row">
+                    <div class="col-md-4 col-sm-4 featured-block">
+                        <h3>{{site.data.home[0].Link_1_Text}}</h3>
+                        <figure>
+                        	<a href="{{site.data.home[0].Link_1_URL}}"><img src="{{site.data.home[0].Link_1_Image[0].url}}" alt="{{site.data.home[0].Link_1_Text}}"></a>
+                    	</figure>
+                   		<p>{{site.data.home[0].Link_1_Description}}</p>
+                    </div><!--/featured-block-->
+                    <div class="col-md-4 col-sm-4 featured-block">
+                        <h3>{{site.data.home[0].Link_2_Text}}</h3>
+                        <figure>
+                        	<a href="{{site.data.home[0].Link_2_URL}}"><img src="{{site.data.home[0].LInk_2_Image[0].url}}" alt="{{site.data.home[0].Link_2_Text}}"></a>
+                    	</figure>
+                   		<p>{{site.data.home[0].Link_2_Description}}</p>
+                    </div><!--/featured-block-->
+                    <div class="col-md-4 col-sm-4 featured-block">
+                        <h3>{{site.data.home[0].Link_3_Text}}</h3>
+                        <figure>
+                        	<a href="{{site.data.home[0].Link_3_URL}}"><img src="{{site.data.home[0].LInk_3_Image[0].url}}" alt="{{site.data.home[0].Link_3_Text}}"></a>
+                    	</figure>
+                   		<p>{{site.data.home[0].Link_3_Description}}</p>
+                    </div><!--/featured-block-->
+                </div>
+        	</div>
+        </div>
+    </div>
+    <!-- Start Body Content -->
+  	<div class="main" role="main">
+    	<div id="content" class="content full">
+        	<div class="container">
+            	<div class="row">
+                    <div class="col-md-4 col-sm-5">
+                      {% for event in site.data.events limit:1 %}
+                      
+                        <section class="upcoming-event format-standard event-list-item event-dynamic">
+                            <a href="{{ event.event_name | datapage_url: 'events' | prepend: site.baseurl | prepend: site.url }}" class="media-box">
+                            {% if event.featured_image[0].url %}
+                              <img src="{{event.featured_image[0].url}}" alt="">
+                            {% else %}
+                                <img src="{{site.default_calendar_image}}" alt="">
+                                {% endif %}
+                            </a>
+                            <div class="upcoming-event-content">
+                                <span class="label label-primary upcoming-event-label">Next coming event</span>
+                                <h3><a href="{{ event.event_name | datapage_url: 'events' | prepend: site.baseurl | prepend: site.url }}" class="event-title">{{event.event_name}}</a></h3>
+                                <span class="meta-data"><span class="event-date">{{event.DateTime | date: "%A, %B %d, %Y"}}</span></span>
+                            </div>
+                            <div class="upcoming-event-footer">
+                            	<a href="{{ event.event_name | datapage_url: 'events' | prepend: site.baseurl | prepend: site.url }}" class="pull-right btn btn-primary btn-sm">Learn More</a>
+                                <ul class="action-buttons">
+                                    <li title="Share event"><a href="#" data-trigger="focus" data-placement="top" data-content="" data-toggle="popover" data-original-title="Share Event" class="event-share-link"><i class="icon-share"></i></a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        {% endfor %}
+                   	</div>
+                    <div class="col-md-8 col-sm-7">
+                        <div class="element-block events-listing">
+                            <div class="events-listing-header">
+                                <a href="{{site.url}}calendar-list.html" class="pull-right basic-link">All Events</a>
+                                <h3 class="element-title">Upcoming Events</h3>
+                                <hr class="sm">
+                            </div><!--/event-list-header-->
+                            <div class="events-listing-content">
+                            {% for event in site.data.events limit:3 offset:1 %}
+                            
+                                <div class="event-list-item event-dynamic">
+                                	<div class="event-list-item-date">
+                                    	<span class="event-date">
+                                        	<span class="event-day">{{event.DateTime | date: "%d"}}</span>
+                                        	<span class="event-month">{{event.DateTime | date: "%b"}}</span>
+                                        </span>
+                                    </div><!--/event-list-date-->
+                                    <div class="event-list-item-info">
+                                    	<div class="lined-info">
+                                        	<h4><a href="{{ event.event_name | datapage_url: 'events' | prepend: site.baseurl | prepend: site.url }}" class="event-title">{{event.event_name}}</a></h4>
+                                        </div><!--/lined-info-->
+                                    	
+                                    	<div class="lined-info event-location">
+                                        	<span class="meta-data"><span class="event-location-address">{{event.description}}</span></span>
+                                        </div><!--/lined-info-->
+                                    </div><!--/event-list-item-info-->
+                                    <div class="event-list-item-actions">
+                                    	<a href="{{ event.event_name | datapage_url: 'events' | prepend: site.baseurl | prepend: site.url }}" class="btn btn-default btn-transparent ">Learn More</a>
+                                    
+                                    </div><!--/event-list-item-actions-->
+                                </div><!--/event-list-item-->
+                               {% endfor %}
+                            </div><!--/events-listing-content-->
+                        </div><!--/events-listing-->
+                    </div><!--col-->
+                </div><!--/row-->
+                <hr class="fw">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3>From our blog</h3>
+                        <hr class="sm">
+                        <div class="row">
+                        	<div class="col-md-6">
+                          {% for post in site.data.blog limit:1 %}
+                          
+                            	<div class="very-latest-post format-standard">
+                                	<div class="title-row">
+                                		<h4>Very latest</h4>
+                                    </div>
+                                    <a href="{{ post.title | datapage_url: 'blog-posts' | prepend: site.baseurl | prepend: site.url }}" class="media-box post-thumb">
+                                    {% if post.featured_image[0].url %}
+                                    <img src="{{post.featured_image[0].url}}" alt="">
+                                    {% else %}
+                                    <img src="{{site.default_blog_image}}" alt="">
+                                    {% endif %}
+                                        
+                                    </a>
+                                    <h3 class="post-title"><a href="{{ post.title | datapage_url: 'blog-posts' | prepend: site.baseurl | prepend: site.url }}">{{post.title}}</a></h3>
+                                    <div class="meta-data">by <a href="#">{{post.author_name}}</a> on {{post.date_added | date: "%B %d, %Y"}} in <a href="{{ post.title | datapage_url: 'blog-posts' | prepend: site.baseurl | prepend: site.url }}">{{post.categories[0]}}</a></div>
+                                    {{post.body_content | truncate: 140 | markdownify  }}
+                                    <p><a href="{{ post.title | datapage_url: 'blog-posts' | prepend: site.baseurl | prepend: site.url }}" class="basic-link">Continue reading</a></p>
+                                </div><!--/title-row-->
+                                {% endfor %}
+                            </div><!--/very-latest-post-->
+                              
+                            <div class="col-md-6">
+                                <ul class="blog-classic-listing">
+                                {% for post in site.data.blog offset: 1 limit: 3 %}
+                                    <li>
+                                      	<a href="{{ post.title | datapage_url: 'blog-posts'| prepend: site.url }}"><strong class="post-title">{{post.title}}</strong></a>
+                                       	<div class="meta-data">by {{post.author_name}} on {{post.date_added | date: "%B %d, %Y"}} in {{post.categories[0]}}</div>
+                                           {% if post.body_content %}
+                                      	<p>{{ post.body_content | truncatewords: 20 | markdownify }}</p>
+                                          {% endif %}
+                                     	<p><a href="{{ post.title | datapage_url: 'blog-posts'| prepend: site.url }}" class="basic-link"> Continue reading </a></p>
+                                    </li>
+                                 {% endfor %}  
+                                </ul>
+                            </div><!--/classic-listing-->
+                        </div><!--/col-md-8-->
+                    </div><!--/row-->
+                    <div class="col-md-4">
+                    	<div class="widget latest_sermons_widget">
+                        	<ul>
+                                {% for sermon in site.data.sermons limit: 1 %}
+                                
+                            	<li class="most-recent-sermon clearfix">
+                                    <h3>Recent Sermons</h3>
+                                    <hr class="sm">
+                                    <div class="latest-sermon-video">
+                                        {% if  sermon.series_featured_image[0].url %}
+                                            <img src="{{sermon.series_featured_image[0].url}}" alt="">
+                                        {% else %}
+                                            <img src="{{site.default_sermon_image}}" alt="">
+                                        {% endif %}
+                                        
+                                    </div>
+                                    <div class="latest-sermon-content">
+                                        <h4><a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}">{{sermon.title}}</a></h4>
+                                        <div class="meta-data">by <a href="#">{{sermon.speaker_name}}</a></div>
+                                        <ul class="sermonDetails">
+                                            <li><i class="fa fa-book"></i> {{sermon.bible_text}}</li>
+                                            <li><i class="fa fa-th-list"></i> {{sermon.series_title}}</li>
+                                            <li><i class="fa fa-calendar"></i> {{sermon.service}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="sermon-links">
+                                        <ul class="action-buttons">
+                                            {% if  sermon.sermon_mp3 %}
+                                            <li><a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}" data-toggle="tooltip" data-placement="right" data-original-title="Listen Audio"><i class="icon-headphones"></i></a></li>
+                                            {% endif %}
+                                            {% if  sermon.slides %}
+                                            <li><a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}" data-toggle="tooltip" data-placement="right" data-original-title="Download Slides"><i class="icon-blackboard-graph"></i></a></li>
+                                            {% endif %}
+                                            {% if  sermon.handout %}
+                                            <li><a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}" data-toggle="tooltip" data-placement="right" data-original-title="Download PDF"><i class="icon-paper-sheet"></i></a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                               	</li><!--/MOST RECENT-->
+                                   {% endfor %}
+                                   {% for sermon in site.data.sermons offset: 1 limit: 2 %}
+                                   
+                                <li>
+                                 	<a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}"><strong class="post-title">{{sermon.title}}</strong></a>
+                                        <div class="meta-data">by <a href="#">{{sermon.speaker_name}}</a> in <a href="#">{{sermon.series_title}}</a></div>
+                                </li>
+                                {% endfor %}
+                                
+                           	</ul>
+                        </div><!--latest-sermon-widget-->
+                    </div>
+                </div>
+            </div>
+        </div>
+   	</div>
+    <!-- End Body Content -->
+    <!-- Gallery updates -->
+    <div class="gallery-updates cols5 clearfix">
+    	<ul>
+                    {% for group in site.data.photos | limit: 6 %}
+                    <li class="format-standard">
+            	<div class="flexslider galleryflex" data-autoplay="yes" data-pagination="yes" data-arrows="no" data-style="fade" data-speed="4000" data-pause="yes">
+                    <ul class="slides">
+            {% for img in group.gallery | limit: 3 %}
+        <li class="item"><a href="{{img.url}}" data-rel="prettyPhoto[postname2]"><img src="{{img.thumbnails.large.url}}" alt=""></a></li>
+         {% endfor %} <!--/end individual images-->
+                       		</ul>
+               	</div>
+          	</li>
+          {% endfor %} <!--/ end gallery loop --> 
+      	</ul>
+        <div class="gallery-updates-overlay">
+        	<div class="container">
+            	<i class="icon-multiple-image"></i>
+                <h2>Updates from our gallery</h2>
+            </div>
+        </div>
+    </div>

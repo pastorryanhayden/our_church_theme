@@ -1,0 +1,114 @@
+---
+layout: default
+---
+
+  <!-- Start Page Header -->
+    <div class="page-header parallax clearfix" style="background-image:url({{page.series_featured_image[0].url}});">
+        <div class="title-subtitle-holder">
+        	<div class="title-subtitle-holder-inner">
+    			<h2>{{page.title}}</h2>
+           	</div>
+        </div><!--/title-subtitle-holder-->
+    </div><!-- End Page Header -->
+    <!-- Breadcrumbs -->
+    <div class="lgray-bg breadcrumb-cont">
+    	<div class="container">
+          	<ol class="breadcrumb">
+            	<li><a href="{{site.url}}index.html">Home</a></li>
+            	<li><a href="{{site.url}}sermons.html">Sermon Series</a></li>
+            	<li><a href="#">{{page.series_title}}</a></li>
+            	<li class="active">{{page.title}}</li>
+          	</ol>
+        </div><!--container-->
+    </div><!--breadcrumbs-->
+    <!-- Start Body Content -->
+  	<div class="main" role="main">
+    	<div id="content" class="content full">
+        	<div class="container">
+                <div class="row">
+                	<div class="col-md-8">
+                    	<a href="sermons-list.html" class="basic-link backward">Back to series</a>
+                    	<div class="sermon-media clearfix">
+                        	<div class="sermon-media-left sermon-links">
+                                <ul class="action-buttons">
+                                            {% if  page.sermon_mp3 %}
+                                            <li><a href="{{ page.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}" data-toggle="tooltip" data-placement="right" data-original-title="Listen Audio"><i class="icon-headphones"></i></a></li>
+                                            {% endif %}
+                                            {% if  page.slides %}
+                                            <li><a href="{{ page.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}" data-toggle="tooltip" data-placement="right" data-original-title="Download Slides"><i class="icon-blackboard-graph"></i></a></li>
+                                            {% endif %}
+                                            {% if  page.handout %}
+                                            <li><a href="{{ page.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}" data-toggle="tooltip" data-placement="right" data-original-title="Download PDF"><i class="icon-paper-sheet"></i></a></li>
+                                            {% endif %}
+                                        </ul>
+                          	</div><!--/sermon-media-links-->
+                            <div class="sermon-media-right">
+                            	<div class="sermon-media-content">
+                                    <img src="{{page.series_featured_image[0].url}}" />
+                                </div><!--/sermon-media-content-->
+                              {% if page.sermon_mp3 %}
+                    {% for item in page.sermon_mp3 %}
+                <audio controls style="width: 100%;">
+                     <source src="{{item.url}}" type="audio/mpeg">
+                </audio>
+              {% endfor %}
+              {% endif %}
+                              {% if page.body_content %}
+                              {{ page.body_content | markdownify }}
+                              {% else %}
+                                <p>No text content has been uploaded for this sermon yet.  Please check back soon or contact the church for more info..</p>
+                              {% endif %}
+                                <div class="social-share-bar">
+                                    <h4><i class="fa fa-share-alt"></i> Share</h4>
+                                    <ul class="social-icons-colored">
+                                        <li class="facebook"><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                                        <li class="vimeo"><a href="https://www.vimeo.com/"><i class="fa fa-vimeo-square"></i></a></li>
+                                        <li class="twitter"><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                                        <li class="googleplus"><a href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div><!--/social-share-bar-->
+                          	</div>
+                       	</div>
+                    </div>
+                    <div class="col-md-4">
+                    	<div class="widget sidebar-widget widget_categories">
+                        	<h3 class="widgettitle">Sermon Details</h3>
+              				<ul>
+                        <li><a href="#"><i class="fa fa-book"></i> <strong>Text:</strong></a>{{page.bible_text}}</li>
+                        <li><a href="#"><i class="fa fa-th-list"></i> <strong>Series:</strong></a>{{page.series_title}}</li>
+                        <li><a href="#"><i class="fa fa-calendar"></i> <strong>Date Preached:</strong></a>{{page.date}}</li>
+                        <li><a href="#"><i class="fa fa-clock-o"></i> <strong>Service Type:</strong></a>{{page.service}}</li>
+              				</ul>
+                        </div>
+                    	<div class="widget sidebar-widget widget_sermon_speakers">
+                        	<h3 class="widgettitle">About the Speaker</h3>
+              				<ul>
+                            	<li>
+                                	<img src="{{page.speaker_thumbnail[0].url}}" alt="" width="100" height="100">
+                                    <h5>{{page.speaker_name}}</h5>
+                                    <span class="meta-data">{{page.speaker_role}}</span>
+                                </li>
+
+                      				</ul>
+                              {{ page.speaker_bio[0] | markdownify }}
+                        </div><!--/widget-speaker-->
+                        <div class="widget sidebar-widget latest_sermons_widget">
+                        	<h3 class="widgettitle">More from this Series</h3>
+              				<ul>
+                            	{% for sermon in site.data.sermons%}
+                                   {% if sermon.series_title == page.series_title %}
+                                <li>
+                                 	<a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}"><strong class="post-title">{{sermon.title}}</strong></a>
+                                        <div class="meta-data">by <a href="#">{{sermon.speaker_name}}</a> in <a href="#">{{sermon.series_title}}</a></div>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+
+                      	    </ul>
+                        </div><!--/widget-speaker-->
+                    </div><!--/col-md-4-->
+                </div><!--/row-->
+         	</div><!--/container-->
+        </div><!--content-->
+   	</div><!--/main-->
+    <!-- End Body Content -->

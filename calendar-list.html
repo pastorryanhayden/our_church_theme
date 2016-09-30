@@ -1,0 +1,64 @@
+---
+layout: default
+---
+<!-- Start Page Header -->
+    <div class="page-header parallax clearfix">
+        <div class="title-subtitle-holder">
+        	<div class="title-subtitle-holder-inner">
+    			<h2>Upcoming Events</h2>
+        	</div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <!-- Breadcrumbs -->
+    <div class="lgray-bg breadcrumb-cont">
+    	<div class="container">
+          	<ol class="breadcrumb">
+            	<li><a href="{{site.url}}index.html">Home</a></li>
+            	<li class="active">Upcoming Events</li>
+          	</ol>
+        </div>
+    </div>
+    <!-- Start Body Content -->
+  <!-- Start Content -->
+  <div class="main" role="main">
+    <div id="content" class="content full">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div id='calendar'>
+                
+            <div class="events-listing-content">
+                            {% for event in site.data.events %}
+                            
+                                <div class="event-list-item event-dynamic">
+                                	<div class="event-list-item-date">
+                                    	<span class="event-date">
+                                        	<span class="event-day">{{event.DateTime | date: "%d"}}</span>
+                                        	<span class="event-month">{{event.DateTime | date: "%b"}}</span>
+                                        </span>
+                                    </div><!--/event-list-date-->
+                                    <div class="event-list-item-info">
+                                    	<div class="lined-info">
+                                        	<h4><a href="{{ event.event_name | datapage_url: 'events' | prepend: site.baseurl | prepend: site.url }}" class="event-title">{{event.event_name}}</a></h4>
+                                        </div><!--/lined-info-->
+                                    	
+                                    	<div class="lined-info event-location">
+                                        	<span class="meta-data"><span class="event-location-address">{{event.description}}</span></span>
+                                        </div><!--/lined-info-->
+                                    </div><!--/event-list-item-info-->
+                                    <div class="event-list-item-actions">
+                                    	<a href="{{ event.event_name | datapage_url: 'events' | prepend: site.baseurl | prepend: site.url }}" class="btn btn-default btn-transparent ">Learn More</a>
+                                    
+                                    </div><!--/event-list-item-actions-->
+                                </div><!--/event-list-item-->
+                               {% endfor %}
+                            </div><!--/events-listing-content-->
+                        </div><!--/events-listing-->
+
+            </div><!--/calendar-->
+          </div><!--/col-md-12-->
+        </div><!--/row-->
+      </div><!--/container-->
+    </div><!--/content-->
+  </div><!--/main-->

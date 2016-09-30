@@ -1,0 +1,103 @@
+---
+layout: default
+---
+<!-- Start Page Header -->
+    <div class="page-header parallax clearfix" style="background-image:url('http://sitesforchurch.s3.amazonaws.com/Untitled%20design%20(1).png');">
+        <div class="title-subtitle-holder">
+        	<div class="title-subtitle-holder-inner">
+    			<h2>Our Sermons</h2>
+           	</div>
+        </div><!--/title-subtitle-holder-->
+    </div><!-- End Page Header -->
+    <!-- Breadcrumbs -->
+    <div class="lgray-bg breadcrumb-cont">
+    	<div class="container">
+          	<ol class="breadcrumb">
+            	<li><a href="{{site.url}}index.html">Home</a></li>
+            	<li><a href="#">Media</a></li>
+            	<li class="active">Sermons</li>
+          	</ol>
+        </div><!--container-->
+    </div><!--breadcrumbs-->
+<!-- Start Content -->
+  <div class="main" role="main">
+    <div id="content" class="content full">
+      <div class="container">
+        <div class="row">
+         <div class="widget latest_sermons_widget col-md-8">
+
+                        	<ul>
+                                {% for sermon in site.data.sermons limit: 1 %}
+                                
+                            	<li class="most-recent-sermon clearfix">
+                              <h3>Latest Sermon</h3>
+                                    <hr class="sm">
+                                    <div class="latest-sermon-video">
+                                        {% if  sermon.series_featured_image[0].url %}
+                                            <img src="{{sermon.series_featured_image[0].url}}" alt="">
+                                        {% else %}
+                                            <img src="{{site.default_sermon_image}}" alt="">
+                                        {% endif %}
+                                        
+                                    </div><!--/latest-sermon-video-->
+                                    <div class="latest-sermon-content">
+                                        <h4><a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}">{{sermon.title}}</a></h4>
+                                        <div class="meta-data">by <a href="#">{{sermon.speaker_name}}</a></div>
+                                        <ul class="sermonDetails">
+                                            <li><i class="fa fa-book"></i> {{sermon.bible_text}}</li>
+                                            <li><i class="fa fa-th-list"></i> {{sermon.series_title}}</li>
+                                            <li><a href="#"><i class="fa fa-calendar"></i> {{sermon.date | date: "%A, %B %d, %Y"}}</a></li>
+                        <li><a href="#"><i class="fa fa-clock-o"></i>{{sermon.service}}</a></li>
+                                        </ul>
+                                    </div><!--/latest-sermon-content-->
+                                    <div class="sermon-links">
+                                        <ul class="action-buttons">
+                                            {% if  sermon.sermon_mp3 %}
+                                            <li><a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}" data-toggle="tooltip" data-placement="right" data-original-title="Listen Audio"><i class="icon-headphones"></i></a></li>
+                                            {% endif %}
+                                            {% if  sermon.slides %}
+                                            <li><a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}" data-toggle="tooltip" data-placement="right" data-original-title="Download Slides"><i class="icon-blackboard-graph"></i></a></li>
+                                            {% endif %}
+                                            {% if  sermon.handout %}
+                                            <li><a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}" data-toggle="tooltip" data-placement="right" data-original-title="Download PDF"><i class="icon-paper-sheet"></i></a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div><!--/sermon-links-->
+                               	</li><!--/MOST RECENT-->
+                                   {% endfor %}
+                                   {% for sermon in site.data.sermons offset: 1 %}
+                                   
+                                <li>
+                                 	<a href="{{ sermon.title | datapage_url: 'sermons' | prepend: site.baseurl | prepend: site.url }}"><strong class="post-title">{{sermon.title}}</strong></a>
+                                        <div class="meta-data">by <a href="#">{{sermon.speaker_name}}</a> in <a href="#">{{sermon.series_title}}</a> on <a href="#">{{sermon.date | date: "%A, %B %d, %Y"}}</a></div>
+                                </li>
+                                {% endfor %}
+                                
+                           	</ul>
+                             {% comment %}</div>
+                        </div><!--latest-sermon-widget-->{% endcomment %}
+          </div><!--/sermon archive-->
+          <!-- Start Sidebar -->
+          <div class="col-md-4 sidebar">
+            <div class="widget sidebar-widget widget_sermon_series">
+              <div class="widgettitle">
+                <h3>Sermon Series:</h3>
+                <hr class="sm">
+              </div>
+              <ul>
+                  {% for item in site.data.series %}
+                <li>
+                <a href="{{ item.title | datapage_url: 'series' | prepend: site.baseurl | prepend: site.url }}"><img src="{{item.featured_image[0].url}}" alt=""></a>
+                <br>
+                <a href="{{ item.title | datapage_url: 'series' | prepend: site.baseurl | prepend: site.url }}">{{item.title}}</a></li>
+                {% endfor %}
+                
+              </ul>
+            </div>
+
+
+          </div><!--/sidebar-->
+        </div><!--/row-->
+      </div><!--/container-->
+    </div><!--/content-->
+  </div><!--/main-->

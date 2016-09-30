@@ -1,0 +1,46 @@
+---
+layout: default
+---
+
+ <!-- Start Page Header -->
+    <div class="page-header parallax clearfix">
+        <div class="title-subtitle-holder">
+        	<div class="title-subtitle-holder-inner">
+    			<h2>Recent Photos</h2>
+        	</div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <!-- Breadcrumbs -->
+    <div class="lgray-bg breadcrumb-cont">
+    	<div class="container">
+          	<ol class="breadcrumb">
+            	<li><a href="{{site.url}}index.html">Home</a></li>
+                <li><a href="#">Media</a></li>
+            	<li class="active">Gallery</li>
+          	</ol>
+        </div>
+    </div>
+    <!-- Start Body Content -->
+  	<div class="main" role="main">
+    	<div id="content" class="content full">
+      		<div class="container">
+                <div class="row">
+                {% for gallery in site.data.photos limit: 5 %}
+                
+                <h3>{{gallery.title}}</h3>
+                <hr class="sm">
+                  	<ul class="sort-destination isotope-grid" data-sort-id="gallery">
+                        {% for photo in gallery.gallery %}
+                        
+                    	<li class="col-md-3 col-sm-3 grid-item format-image">
+                      		<div class="grid-item-inner"> <a href="{{photo.url}}" data-rel="prettyPhoto" class="media-box"> <img src="{{photo.thumbnails.large.url}}" alt=""> </a> </div>
+                    	</li>
+                        {% endfor %}
+                  	</ul><!--/isotope grid-->
+                      {% endfor %}
+           		</div><!--/row-->
+         	</div><!--/container-->
+        </div><!--/content-->
+   	</div><!--/main-->
+    <!-- End Body Content -->
